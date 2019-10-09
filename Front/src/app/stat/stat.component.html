@@ -1,0 +1,48 @@
+<!-- Test -->
+
+
+
+<!--  -->
+<h2>Choose your race</h2>
+<ul>
+    <li *ngFor="let race of Races">
+        <input type="radio" [value]="race.name" name="race" [(ngModel)]="selectedValue" />{{race.name}}
+    </li>
+</ul>
+
+
+
+<div [ngSwitch]="selectedValue">
+
+<div class="container">
+    <div *ngSwitchCase="'Disciple of Chaos'">
+                <h1>{{selectedValue}}</h1>
+        <div class="arch" *ngFor="let arch of Harch">
+                <div><input type="radio" [value]="arch.value" name="arch" [(ngModel)]="archValue" />{{arch.value}}</div>
+                
+        </div>
+<h1>{{archValue}}</h1>
+        <div *ngIf="archValue">
+            <div *ngFor="let stat of statsDC">
+                <div class="stat">{{stat.stat}} : {{stat.value}} <input type="number" name="{{stat.stat}}" min="0" max="20" [(ngModel)]="stat['stat.stat']">{{stat.value + stat['stat.stat']}}</div>
+            </div>
+            <div class="stat">Inf : {{infamy}} <button (click)="roll()">Roll</button></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div *ngSwitchCase="'Space Marine'">
+                    <h1>{{selectedValue}}</h1>
+            <div *ngFor="let arch of SMarch">
+                    <div><input type="radio" [value]="arch.value" name="arch" [(ngModel)]="archValue" />{{arch.value}}</div>
+                </div>
+    <div *ngIf="archValue">
+            <h1>{{archValue}}</h1>
+        <div *ngFor="let stat of statsSM">
+            <div class="stat">{{stat.stat}} : {{stat.value}} <input type="number" name="{{stat.stat}}" min="0" max="20" [(ngModel)]="stat['stat.stat']">{{stat.value + stat['stat.stat']}}</div>
+        </div>
+        <div class="stat">Inf : {{infamy}} <button (click)="roll()">Roll</button></div>
+    </div>
+    </div>
+</div>
